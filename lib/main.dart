@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_practice/file_screen.dart';
+import 'package:flutter_practice/ui_components.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
     handleFile();
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -39,7 +41,7 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -100,6 +102,9 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            ElevatedButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>UiComponents()));
+            }, child: Text("UI Components")),
             ElevatedButton(onPressed:() {
               Navigator.push(context, MaterialPageRoute(builder: (context)=>FileScreen()));
             },
