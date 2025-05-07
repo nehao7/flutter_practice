@@ -47,6 +47,7 @@ Future<void> _showMyDialog(BuildContext context) async {
 
 class _UiComponentsState extends State<UiComponents> {
   final TextEditingController _controller = TextEditingController();
+  bool _validate = false;
   final _formKey = GlobalKey<FormState>();
 
   // @override
@@ -94,37 +95,42 @@ class _UiComponentsState extends State<UiComponents> {
               ),
             ),
             SizedBox(height: 10.0),
-            TextFormField(
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "Add some Text";
-                }
-                return null;
-              },
+            TextField(
+              controller: _controller,
               decoration: InputDecoration(
                 labelText: "Enter name",
                 border: OutlineInputBorder(),
+                errorText: _validate?"Name Value required":null
               ),
             ),
             SizedBox(height: 10.0),
             TextField(
+              controller: _controller,
               decoration: InputDecoration(
                 labelText: "Enter Email",
                 border: OutlineInputBorder(),
+                errorText: _validate ? "Email Value required":null
               ),
             ),
             SizedBox(height: 10.0),
             TextField(
+              controller: _controller,
               decoration: InputDecoration(
                 labelText: "Enter Contact",
                 border: OutlineInputBorder(),
+                  errorText: _validate ? "Contact Value required":null
+
               ),
             ),
             SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                FilledButton(onPressed: () {}, child: Text("validate Fields")),
+                FilledButton(onPressed: () {
+                  setState(() {
+                    _controller.text.isEmpty?_validate = true :_validate=false;
+                  });
+                }, child: Text("Validate Fields")),
                 SizedBox(width: 10),
                 Text("Filled Button"),
               ],
