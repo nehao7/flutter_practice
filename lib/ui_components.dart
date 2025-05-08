@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_practice/MyFormFields.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class UiComponents extends StatefulWidget {
@@ -68,7 +69,6 @@ class _UiComponentsState extends State<UiComponents> {
       SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.all(16.0),
-
         child: Column(
           children: [
             Row(
@@ -86,6 +86,7 @@ class _UiComponentsState extends State<UiComponents> {
 
             // Image.asset('assets/images/img.png"',
             //     height: 50,alignment: Alignment.center), NOT Working
+
             Text(
               "Enter Details here",
               textAlign: TextAlign.center,
@@ -130,6 +131,7 @@ class _UiComponentsState extends State<UiComponents> {
                   setState(() {
                     _controller.text.isEmpty?_validate = true :_validate=false;
                   });
+
                 }, child: Text("Validate Fields")),
                 SizedBox(width: 10),
                 Text("Filled Button"),
@@ -213,8 +215,10 @@ class _UiComponentsState extends State<UiComponents> {
             SizedBox(height: 10),
             Row(mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              FilledButton.tonal(onPressed: ()=>{}, child: Text("Filled Tonal")),
-              Text("Filled Tonal Button")
+              FilledButton.tonal(onPressed: ()=>{
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> MyFormFields()))
+              },
+                  child: Text("Filled Tonal")),
             ],)
           ],
         ),
