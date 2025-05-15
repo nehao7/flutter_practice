@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_practice/ListSeparationBuilder.dart';
+import 'package:flutter_practice/ListViewCustom.dart';
+import 'package:flutter_practice/Listviewbuilder.dart';
+import 'package:flutter_practice/Mylistview.dart';
 import 'package:flutter_practice/file_screen.dart';
 import 'package:flutter_practice/ui_components.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -102,6 +107,18 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            ElevatedButton(onPressed: ()=>{
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>ListViewCustom()))
+            }, child: Text("Custom List")),
+            ElevatedButton(onPressed: ()=>{
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>ListSeparationBuilder()))
+            }, child: Text("List With Separation")),
+            ElevatedButton(onPressed: ()=>{
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>ListViewBuilder()))
+            }, child: Text("List View builder")),
+            ElevatedButton(onPressed: ()=>{
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Mylistview()))
+            }, child: Text("List view")),
             ElevatedButton(onPressed: (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=>UiComponents()));
             }, child: Text("UI Components")),
