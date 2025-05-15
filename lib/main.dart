@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_practice/CrudWithMultipleFields.dart';
 import 'package:flutter_practice/ListSeparationBuilder.dart';
+import 'package:flutter_practice/ListViewCrud.dart';
 import 'package:flutter_practice/ListViewCustom.dart';
 import 'package:flutter_practice/Listviewbuilder.dart';
 import 'package:flutter_practice/Mylistview.dart';
@@ -125,7 +127,23 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton(onPressed:() {
               Navigator.push(context, MaterialPageRoute(builder: (context)=>FileScreen()));
             },
-                child: Text('Go to File Handling Screen'))
+                child: Text('Go to File Handling Screen')),
+            SizedBox(height: 10),
+            Row(mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FilledButton.tonal(onPressed: ()=>{
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> ListViewCrud()))
+                },
+                    child: Text("List CRUD")),
+              ],),
+            SizedBox(height: 10),
+            Row(mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FilledButton.tonal(onPressed: ()=>{
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> CrudWithMultipleFields()))
+                },
+                    child: Text("MultipleFields CRUD")),
+              ],)
           ],
         ),
       ),
