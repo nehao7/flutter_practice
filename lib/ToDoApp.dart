@@ -28,7 +28,6 @@ class _ToDoAppState extends State<ToDoApp> {
                     itemBuilder: (context, index) {
                       return ListTile(
                           leading: Checkbox(
-                            //We use 1 for true and 0 for false.
                               value: snapshot.data?[index]['status'] == 1
                                   ? true
                                   : false,
@@ -36,14 +35,12 @@ class _ToDoAppState extends State<ToDoApp> {
                                 //updateTask method takes the id of the task and the status to be updated.
                                 await helper.updateTask(
                                     snapshot.data?[index]['id'], value!);
-                                //setState is used to update the UI.
                                 setState(() {});
                               }),
                           title: Text(snapshot.data?[index]['title']),
                           trailing: IconButton(
                               icon: const Icon(Icons.delete),
                               onPressed: () async {
-                                //deleteTask method takes the id of the task to be deleted.
                                 await helper
                                     .deleteTask(snapshot.data?[index]['id']);
                                 //setState is used to update the UI.
@@ -55,19 +52,15 @@ class _ToDoAppState extends State<ToDoApp> {
             }),
         floatingActionButton: FloatingActionButton(
             onPressed: () {
-              //showDialog is used to show a dialog box, it takes a context and a builder.
               showDialog(
                   context: context,
                   builder: (context) {
-                    //AlertDialog is a dialog box with a title, content, and actions.
                     return AlertDialog(
-                        title: const Text('Add Task'),
+                        title: Text('Add Task'),
                         content: TextField(
-                          //autofocus is used to focus the text field when the dialog box is shown.
                             autofocus: true,
-                            //controller is used to control the text field.
                             controller: textEditingController,
-                            decoration: const InputDecoration(
+                            decoration:  InputDecoration(
                               hintText: 'Enter title',
                             )),
                         actions: [
@@ -76,10 +69,9 @@ class _ToDoAppState extends State<ToDoApp> {
                                 //Navigator.pop is used to close the dialog box.
                                 Navigator.pop(context);
                               },
-                              child: const Text('Cancel')),
+                              child: Text('Cancel')),
                           TextButton(
                               onPressed: () async {
-                                //insertTask method takes the title of the task and the status.
                                 await helper.insertTask(
                                     textEditingController.text, false);
                                 //clear is used to clear the text field.
@@ -96,6 +88,8 @@ class _ToDoAppState extends State<ToDoApp> {
                         ]);
                   });
             },
-            child: const Icon(Icons.add)));
+            child: const Icon(Icons.add)
+        )
+    );
   }
 }

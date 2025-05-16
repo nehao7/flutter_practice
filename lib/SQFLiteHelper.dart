@@ -1,29 +1,71 @@
 
+import 'dart:io';
+
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 class SQFLiteHelper{
   // all methods in this class are asynchronous because they involve I/O operations.
+  Future<Database> openMyDatabase() async {
+    if (!Platform.isAndroid && !Platform.isIOS) {
+      //  Initialize FFI for desktop platforms
+      sqfliteFfiInit();
+      databaseFactory = databaseFactoryFfi;
+    }
 
-  Future<Database> openMyDatabase() async{
-    return await openDatabase(
-      // join method is used to join the path of the database with the path of the app's document directory.
+    //  Use correct getDatabasesPath depending on platform
+    final dbPath = Platform.isAndroid || Platform.isIOS
+        ? await getDatabasesPath()
+        : await databaseFactory.getDatabasesPath();
 
-    join(await getDatabasesPath(),'myDatabase.db'),
-        // The version of the database. This is used to manage database schema changes.
+    final path = join(dbPath, 'myDatabase.db');
 
+    return await databaseFactory.openDatabase(
+      path,
+      options: OpenDatabaseOptions(
         version: 1,
-        // onCreate is a callback function that is called ONLY when the database is created for the first time.
-
-        onCreate: (db,version){
-        return db.execute('CREATE TABLE todoList(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, title TEXT, status  INTEGER)');
-          //Here we are creating a table named todoList with three columns: id, title, and status.
-          //The id column is the primary key and is set to autoincrement.
-          //We use INTEGER for the status column because SQLite does not have a boolean data type.
-          //Instead, we use 0 for false and 1 for true.
-      });
-    
+        onCreate: (db, version) {
+          db.execute('CREATE TABLE todoList(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, title TEXT, status  INTEGER)');        },
+      ),
+    );
   }
+
+  // Future<Database> openMyDatabase() async{
+  //   // Desktop or console (non-mobile)
+  //   if (!Platform.isAndroid && !Platform.isIOS) {
+  //     // Initialize FFI
+  //     sqfliteFfiInit();
+  //
+  //     // Set the database factory to FFI for desktop
+  //     databaseFactory = databaseFactoryFfi;
+  //
+  //     final dbPath = await databaseFactory.getDatabasesPath();
+  //     final path = join(dbPath, 'myToDoDatabase.db');
+  //
+  //     return await databaseFactory.openDatabase(path, options: OpenDatabaseOptions(
+  //       version: 1,
+  //       onCreate: (db, version) {
+  //         db.execute('CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT)');
+  //       },
+  //     ));
+  //   }
+  //
+  //   // Mobile (Android/iOS)
+  //   final dbPath = await getDatabasesPath();
+  //   final path = join(dbPath, 'myToDoDatabase.db');
+  //
+  //   return await openDatabase(
+  //     path,
+  //     version: 1,
+  //     onCreate: (db, version) {
+  //       db.execute('CREATE TABLE tasks (id INTEGER PRIMARY KEY, title TEXT)');
+  //     },
+  //   );
+  //
+  // }
+
+  //192.168.10.78
   Future<void> insertTask(String title, bool status) async{
     //db is the instance of the database that we get from the openMyDatabase function.
 
