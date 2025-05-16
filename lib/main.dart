@@ -5,6 +5,7 @@ import 'package:flutter_practice/ListViewCrud.dart';
 import 'package:flutter_practice/ListViewCustom.dart';
 import 'package:flutter_practice/Listviewbuilder.dart';
 import 'package:flutter_practice/Mylistview.dart';
+import 'package:flutter_practice/ToDoApp.dart';
 import 'package:flutter_practice/file_screen.dart';
 import 'package:flutter_practice/ui_components.dart';
 import 'dart:io';
@@ -143,6 +144,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.push(context, MaterialPageRoute(builder: (context)=> CrudWithMultipleFields()))
                 },
                     child: Text("MultipleFields CRUD")),
+              ],),
+            SizedBox(height: 10),
+            Row(mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FilledButton.tonal(onPressed: ()=>{
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> ToDoApp()))
+                },
+                    child: Text("ToDo App")),
               ],)
           ],
         ),
