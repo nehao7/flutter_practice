@@ -76,8 +76,6 @@ class _ToDoAppState extends State<ToDoApp> {
                                     textEditingController.text, false);
                                 //clear is used to clear the text field.
                                 textEditingController.clear();
-                                //here we are checking if the widget is mounted before popping the dialog box.
-                                //because we are using context in async functions.
                                 if (context.mounted) {
                                   Navigator.pop(context);
                                 }

@@ -4,6 +4,7 @@ import 'package:flutter_practice/ListSeparationBuilder.dart';
 import 'package:flutter_practice/ListViewCrud.dart';
 import 'package:flutter_practice/ListViewCustom.dart';
 import 'package:flutter_practice/Listviewbuilder.dart';
+import 'package:flutter_practice/MyGestureDetector.dart';
 import 'package:flutter_practice/Mylistview.dart';
 import 'package:flutter_practice/ToDoApp.dart';
 import 'package:flutter_practice/file_screen.dart';
@@ -129,6 +130,10 @@ class _MyHomePageState extends State<MyHomePage> {
               Navigator.push(context, MaterialPageRoute(builder: (context)=>FileScreen()));
             },
                 child: Text('Go to File Handling Screen')),
+            
+            ElevatedButton(onPressed: ()=>{
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>MyGestureDetector()))
+            }, child: Text("Gesture Detector")),
             SizedBox(height: 10),
             Row(mainAxisAlignment: MainAxisAlignment.center,
               children: [
