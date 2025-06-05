@@ -7,6 +7,7 @@ import 'package:flutter_practice/Listviewbuilder.dart';
 import 'package:flutter_practice/MyGestureDetector.dart';
 import 'package:flutter_practice/Mylistview.dart';
 import 'package:flutter_practice/ToDoApp.dart';
+import 'package:flutter_practice/WebViewScreen.dart';
 import 'package:flutter_practice/file_screen.dart';
 import 'package:flutter_practice/ui_components.dart';
 import 'dart:io';
@@ -52,7 +53,8 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: WebViewsScreen(),
+      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
