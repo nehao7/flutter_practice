@@ -53,8 +53,8 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
       ),
-      home: WebViewsScreen(),
-      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      // home: WebViewsScreen(),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }

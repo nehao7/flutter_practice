@@ -220,7 +220,8 @@ class _UiComponentsState extends State<UiComponents> {
                 Navigator.push(context, MaterialPageRoute(builder: (context)=> MyFormFields()))
               },
                   child: Text("Filled Tonal")),
-            ],),
+            ],
+            ),
 
           ],
         ),
